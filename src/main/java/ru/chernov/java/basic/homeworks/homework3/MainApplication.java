@@ -65,6 +65,7 @@ public class MainApplication {
      * @return возвращает изменный массив sqrArr
      */
     public static int[][] fillDiagonal(int[][] sqrArr) {
+        System.out.println ("filling diagonal start");
         for (int i = 0; i < sqrArr.length; i++) {
             System.out.print ("|");
             for (int j = 0; j < sqrArr[i].length; j++) {
@@ -75,6 +76,7 @@ public class MainApplication {
             }
             System.out.println ();
         }
+        System.out.println ("filling diagonal end");
         return sqrArr;
     }
 
