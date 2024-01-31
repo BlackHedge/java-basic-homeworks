@@ -13,6 +13,7 @@ public class MainApplication {
         System.out.println ("Sum of positive items is - " +
                 sumOfPositiveElements ((getArray (5, 5))));
         printAsteriskSquare (5);
+        fillDiagonal (getArray (5,5));
         int[][] arrayForMax = getArray (4, 3);
         int maxValue = findMax (arrayForMax);
         System.out.println ("The " + maxValue + " is max in array " + Arrays.deepToString (arrayForMax));
