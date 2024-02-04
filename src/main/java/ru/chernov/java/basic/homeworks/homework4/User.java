@@ -20,11 +20,11 @@ public class User {
     }
 
     public void info() {
-        System.out.println ("* -Информация о пользователе- *");
-        System.out.println ("ФИО: " + surname + " " + name + " " + thirdName);
-        System.out.println ("Год рождения: " + birthYear);
-        System.out.println ("e-mail: " + email);
-        System.out.println ("------------");
+        System.out.println("* -Информация о пользователе- *");
+        System.out.println("ФИО: " + surname + " " + name + " " + thirdName);
+        System.out.println("Год рождения: " + birthYear);
+        System.out.println("e-mail: " + email);
+        System.out.println("------------");
     }
 
 }
