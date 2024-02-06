@@ -18,11 +18,9 @@ public class MainApplication {
                         new User("Чудаков", "Илья", "", 2003, "нет")
                 };
         int currentYear = Year.now().getValue();
-        int cardNumber = 0;
-        for(int userId = 0; userId < users.length; userId++) {
-            if((currentYear - users[userId].getBirthYear()) >= 40) {
-                cardNumber++;
-                System.out.println("Запись № " + cardNumber);
+        for (int userId = 0; userId < users.length; userId++) {
+            if ((currentYear - users[userId].getBirthYear()) >= 40) {
+                System.out.println("Запись № " + (userId + 1));
                 users[userId].info();
             }
         }

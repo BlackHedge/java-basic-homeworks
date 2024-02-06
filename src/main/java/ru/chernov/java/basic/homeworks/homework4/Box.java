@@ -28,7 +28,7 @@ public class Box {
     }
 
     public boolean isStatusOpened() {
-        if(statusOpened) {
+        if (statusOpened) {
             System.out.println("The box is opened");
         } else {
             System.out.println("The box is closed");
@@ -37,7 +37,7 @@ public class Box {
     }
 
     public String getContent() {
-        if(content.isEmpty()) {
+        if (content.isEmpty()) {
             System.out.println("The box is empty");
         } else {
             System.out.println("The box contains \"" + content + "\"");
@@ -46,7 +46,7 @@ public class Box {
     }
 
     public void open() {
-        if(statusOpened) {
+        if (statusOpened) {
             System.out.println("The box is already opened");
         } else {
             statusOpened = true;
@@ -55,7 +55,7 @@ public class Box {
     }
 
     public void close() {
-        if(!statusOpened) {
+        if (!statusOpened) {
             System.out.println("The box is already closed");
         } else {
             this.statusOpened = false;
@@ -78,30 +78,30 @@ public class Box {
     }
 
     public void putItem(String item) {
-        if(statusOpened && content.isEmpty()) {
+        if (statusOpened && content.isEmpty()) {
             content = item;
             System.out.println("\"" + item + "\" add in the box");
         }
-        if(!statusOpened) {
+        if (!statusOpened) {
             System.out.println("The box is closed. To put an item open the box");
         }
-        if(!content.isEmpty()) {
+        if (!content.isEmpty()) {
             System.out.println("The item \"" + content + "\" in the box. Please remove it before put a new.");
         }
     }
 
     public void removeItem(String item) {
-        if(statusOpened && content.equals(item)) {
+        if (statusOpened && content.equals(item)) {
             content = "";
             System.out.println("The box is empty. \"" + item + "\" was removed.");
         }
-        if(!statusOpened) {
+        if (!statusOpened) {
             System.out.println("The box is closed. To remove an item open the box");
         }
-        if(content.isEmpty()) {
+        if (content.isEmpty()) {
             System.out.println("No items to remove");
         }
-        if(!content.equals(item)) {
+        if (!content.equals(item)) {
             System.out.println("No such item in box");
         }
     }
