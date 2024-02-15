@@ -10,14 +10,14 @@ import java.util.Arrays;
 public class MainApplication {
 
     public static void main(String[] args) {
-        System.out.println ("Sum of positive items is - " +
-                sumOfPositiveElements ((getArray (5, 5))));
-        printAsteriskSquare (5);
-        fillDiagonal (getArray (5,5));
-        int[][] arrayForMax = getArray (4, 3);
-        int maxValue = findMax (arrayForMax);
-        System.out.println ("The " + maxValue + " is max in array " + Arrays.deepToString (arrayForMax));
-        sumOfSelectedRowOfArray (getArray (10, 3), 2);
+        System.out.println("Sum of positive items is - " +
+                sumOfPositiveElements((getArray(5, 5))));
+        printAsteriskSquare(5);
+        fillDiagonal(getArray(5, 5));
+        int[][] arrayForMax = getArray(4, 3);
+        int maxValue = findMax(arrayForMax);
+        System.out.println("The " + maxValue + " is max in array " + Arrays.deepToString(arrayForMax));
+        sumOfSelectedRowOfArray(getArray(10, 3), 2);
     }
 
     /**
@@ -46,12 +46,12 @@ public class MainApplication {
     public static char[][] printAsteriskSquare(int size) {
         char[][] arrForSqr = new char[size][size];
         for (int i = 0; i < arrForSqr.length; i++) {
-            System.out.print ("|");
+            System.out.print("|");
             for (int j = 0; j < arrForSqr[i].length; j++) {
                 arrForSqr[i][j] = '*';
-                System.out.print (arrForSqr[i][j] + "|");
+                System.out.print(arrForSqr[i][j] + "|");
             }
-            System.out.println ();
+            System.out.println();
         }
         return arrForSqr;
     }
@@ -65,18 +65,18 @@ public class MainApplication {
      * @return возвращает изменный массив sqrArr
      */
     public static int[][] fillDiagonal(int[][] sqrArr) {
-        System.out.println ("filling diagonal start");
+        System.out.println("filling diagonal start");
         for (int i = 0; i < sqrArr.length; i++) {
-            System.out.print ("|");
+            System.out.print("|");
             for (int j = 0; j < sqrArr[i].length; j++) {
                 if (i == j || i == sqrArr[i].length - 1 - j) {
                     sqrArr[i][j] = 0;
                 }
-                System.out.print (sqrArr[i][j] + "|");
+                System.out.print(sqrArr[i][j] + "|");
             }
-            System.out.println ();
+            System.out.println();
         }
-        System.out.println ("filling diagonal end");
+        System.out.println("filling diagonal end");
         return sqrArr;
     }
 
@@ -108,21 +108,21 @@ public class MainApplication {
      * @return возвращает сумму выбранной строки. Если строки нет возвращает -1
      */
     public static int sumOfSelectedRowOfArray(int[][] initArray, int rowNum) {
-        System.out.println ("sumOfSelectedRowOfArray is running");
+        System.out.println("sumOfSelectedRowOfArray is running");
         int sumOfRow = 0;
         int realIndexOfRow = rowNum - 1;
-        System.out.println ("check array " + Arrays.deepToString (initArray));
-        System.out.println ("search " + rowNum + " row in array");
+        System.out.println("check array " + Arrays.deepToString(initArray));
+        System.out.println("search " + rowNum + " row in array");
         for (int row = 0; row < initArray.length; row++) {
             if (initArray.length < rowNum) {
                 int code = -1;
-                System.out.println ("row is not found. code " + code);
+                System.out.println("row is not found. code " + code);
                 return code;
             } else if (row == realIndexOfRow) {
                 for (int column = 0; column < initArray[row].length; column++) {
                     sumOfRow += initArray[row][column];
                 }
-                System.out.println ("row is found. sum of row is " + sumOfRow);
+                System.out.println("row is found. sum of row is " + sumOfRow);
                 break;
             }
         }
@@ -138,7 +138,7 @@ public class MainApplication {
         int[][] initialArray = new int[rows][columns];
         for (int i = 0; i < initialArray.length; i++) {
             for (int j = 0; j < initialArray[i].length; j++) {
-                initialArray[i][j] = (int) (Math.random () * 10);
+                initialArray[i][j] = (int) (Math.random() * 10);
             }
         }
         return initialArray;
