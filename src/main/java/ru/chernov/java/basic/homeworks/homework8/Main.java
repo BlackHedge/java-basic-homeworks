@@ -1,8 +1,12 @@
 package ru.chernov.java.basic.homeworks.homework8;
 
-
 import java.util.Arrays;
 
+/**
+ * ДЗ 8. OTUS Java Basic. Исключения
+ *
+ * @author студент Максим Чернов
+ */
 public class Main {
     public static void main(String[] args) {
 
@@ -30,9 +34,9 @@ public class Main {
      * Если невозможно преобразовать строку в число, выбрасывается ошибка AppArrayDatException
      *
      * @param array - двумерный (4х4) массив
+     * @return Возвращает сумму всех элементов массива в числовом формате
      * @throws AppArraySizeException
      * @throws AppArrayDataExeption
-     * @return Возвращает сумму всех элементов массива в числовом формате
      */
     public static int sumSqrArrayItems(String[][] array) throws AppArraySizeException, AppArrayDataExeption {
         Boolean isSquareSize = true;
