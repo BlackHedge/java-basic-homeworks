@@ -20,7 +20,7 @@ public class Main {
             System.out.println("Считается сумма элементов массива " + Arrays.deepToString(array));
             try {
                 System.out.println("Cумма элементов массива " + sumSqrArrayItems(array));
-            } catch (AppArraySizeException | AppArrayDataExeption e) {
+            } catch (AppArraySizeException | AppArrayDataExсeption e) {
                 System.out.print("Сумма не посчитана: ");
                 System.out.println(e.getMessage());
                 continue;
@@ -36,9 +36,9 @@ public class Main {
      * @param array - двумерный (4х4) массив
      * @return Возвращает сумму всех элементов массива в числовом формате
      * @throws AppArraySizeException
-     * @throws AppArrayDataExeption
+     * @throws AppArrayDataExсeption
      */
-    public static int sumSqrArrayItems(String[][] array) throws AppArraySizeException, AppArrayDataExeption {
+    public static int sumSqrArrayItems(String[][] array) throws AppArraySizeException, AppArrayDataExсeption {
         Boolean isSquareSize = true;
         int sumOfArrayItems = 0;
         if (array.length != 4) {
@@ -56,9 +56,8 @@ public class Main {
                 try {
                     sumOfArrayItems = sumOfArrayItems + Integer.parseInt(array[index1lvl][index2lvl]);
                 } catch (NumberFormatException e) {
-                    throw new AppArrayDataExeption("Данные в ячейке " + index1lvl + "-" + index2lvl + " не " +
-                            "содержит " +
-                            "числового значения");
+                    throw new AppArrayDataExсeption("Данные в ячейке " + index1lvl + "-" + index2lvl + " не " +
+                            "содержит " + "числового значения");
                 }
             }
         }
