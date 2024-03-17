@@ -2,6 +2,7 @@ package ru.chernov.java.basic.homeworks.homework9;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * ДЗ 9. OTUS. Java Basic. Коллекции. Часть 1
@@ -10,7 +11,7 @@ import java.util.Arrays;
  */
 public class Main {
     public static void main(String[] args) {
-        ArrayList numberList = new ArrayList<>();
+        List<Integer> numberList = new ArrayList<>();
         try {
             numberList = getSequenceBetween(-10, 10);
             System.out.println(getSequenceBetween(-10, -11));
@@ -18,12 +19,12 @@ public class Main {
             System.out.println(e);
         }
         System.out.println(sumOfList(numberList));
-        ArrayList<Integer> targetList = new ArrayList<>(Arrays.asList(34, 67876, 34, null, 4, null));
+        List<Integer> targetList = new ArrayList<>(Arrays.asList(34, 67876, 34, null, 4, null));
         System.out.println("Исходный список " + targetList.toString());
         System.out.println("Список с заменой " + substituteInList(targetList, 4).toString());
         System.out.println("Исходный список " + targetList.toString());
         System.out.println("Список с увеличением " + increaseNumberInList(targetList, 6).toString());
-        ArrayList<Employee> employees = new ArrayList<>(Arrays.asList(
+        List<Employee> employees = new ArrayList<>(Arrays.asList(
                 new Employee("Кеша", 35),
                 new Employee("Саныч", 44),
                 new Employee("Ольга", 30),
@@ -48,11 +49,11 @@ public class Main {
      * @return возвращает последовательность чисел между полученными, включая их самих
      * @throws Exception возникает в случае, если максимальное значение меньше минимального
      */
-    public static ArrayList getSequenceBetween(int min, int max) throws Exception {
+    public static List<Integer> getSequenceBetween(int min, int max) throws Exception {
         if (min > max) {
             throw new Exception("Максимальное значение не может быть меньше минимального");
         }
-        ArrayList<Integer> sequenceNumber = new ArrayList<>(max - min + 1);
+        List<Integer> sequenceNumber = new ArrayList<>(max - min + 1);
         for (int item = min; item <= max; item++) {
             sequenceNumber.add(item);
         }
@@ -65,10 +66,12 @@ public class Main {
      * @param numberList список целых чисел
      * @return sum - сумма всех значений полученного списка
      */
-    public static int sumOfList(ArrayList<Integer> numberList) {
+    public static int sumOfList(List<Integer> numberList) {
         int sum = 0;
         for (Integer item : numberList) {
-            sum = (item > 5) ? sum + item : sum;
+            if (item > 5) {
+                sum = sum + item;
+            }
         }
         return sum;
     }
@@ -81,7 +84,7 @@ public class Main {
      * @param number     число для подстановки
      * @return возвращает измененный входящий список
      */
-    public static ArrayList substituteInList(ArrayList<Integer> targetList, int number) {
+    public static List<Integer> substituteInList(List<Integer> targetList, int number) {
         for (int i = 0; i < targetList.size(); i++) {
             if ((targetList.get(i) != null)) {
                 targetList.set(i, number);
@@ -98,7 +101,7 @@ public class Main {
      * @param number     число, на которое увеличивается
      * @return возвращает измененный входящий список
      */
-    public static ArrayList increaseNumberInList(ArrayList<Integer> targetList, int number) {
+    public static List<Integer> increaseNumberInList(List<Integer> targetList, int number) {
         for (int i = 0; i < targetList.size(); i++) {
             if ((targetList.get(i) != null)) {
                 targetList.set(i, targetList.get(i) + number);
@@ -115,8 +118,8 @@ public class Main {
      * @param employees список сотрудников
      * @return возвращает список имен исходного списка сотрудников
      */
-    public static ArrayList<String> getEmployeesListName(ArrayList<Employee> employees) {
-        ArrayList<String> employeeNames = new ArrayList<>();
+    public static List<String> getEmployeesListName(List<Employee> employees) {
+        List<String> employeeNames = new ArrayList<>();
         for (Employee employee : employees) {
             employeeNames.add(employee.getName());
         }
@@ -130,8 +133,8 @@ public class Main {
      * @param minAge    минимальный оцениваемый возраст
      * @return возвращает список сотрудников подходящего возраста
      */
-    public static ArrayList<Employee> getEmployeesByAge(ArrayList<Employee> employees, int minAge) {
-        ArrayList<Employee> employeesRateAge = new ArrayList<>();
+    public static List<Employee> getEmployeesByAge(List<Employee> employees, int minAge) {
+        List<Employee> employeesRateAge = new ArrayList<>();
         for (Employee employee : employees) {
             if (employee.getAge() >= minAge) {
                 employeesRateAge.add(employee);
@@ -147,18 +150,14 @@ public class Main {
      * @param avgAge    целевой средний возраст
      * @return возвращает true если средний возраст выше или равен целевому среднему возрасту и false в противном случае
      */
-    public static boolean checkAverageEmployeesAge(ArrayList<Employee> employees, int avgAge) {
+    public static boolean checkAverageEmployeesAge(List<Employee> employees, int avgAge) {
         int avgAgeOfEmployees = 0;
         for (Employee employee : employees) {
             avgAgeOfEmployees = avgAgeOfEmployees + employee.getAge();
         }
         avgAgeOfEmployees = (int) (avgAgeOfEmployees / employees.size());
         System.out.println("Средний возраст сотрудников - " + avgAgeOfEmployees);
-        if (avgAgeOfEmployees >= avgAge) {
-            return true;
-        } else {
-            return false;
-        }
+        return (avgAgeOfEmployees >= avgAge);
     }
 
     /**
@@ -168,10 +167,12 @@ public class Main {
      * @return возвращает Employee с самым меньшим возрастом из полученного списка. Если под условия подходит
      * несколько, то возвращается первый
      */
-    public static Employee getYoungestEmployee(ArrayList<Employee> employees) {
+    public static Employee getYoungestEmployee(List<Employee> employees) {
         Employee youngEmployee = employees.get(0);
         for (Employee employee : employees) {
-            youngEmployee = (employee.getAge() < youngEmployee.getAge()) ? employee : youngEmployee;
+            if (employee.getAge() < youngEmployee.getAge()) {
+                youngEmployee = employee;
+            }
         }
         return youngEmployee;
     }
