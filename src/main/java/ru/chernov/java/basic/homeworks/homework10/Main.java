@@ -5,11 +5,13 @@ import java.util.HashMap;
 public class Main {
     public static void main(String[] args) {
         PhoneBook pb = new PhoneBook(new HashMap<>());
-        pb.add("Igor", "79001234567");
-        pb.add("Igor", "3765743");
-        pb.add("Igor", "hfg");
-        pb.add("Igor", "yjvth");
-        pb.find("Igor");
-
+        pb.add("79000124321", "Gosha");
+        pb.add("79889561871", "Simon");
+        pb.add("79889561872", "Simon");
+        pb.find("Simon");
+        pb.find("Gosha");
+        pb.find("Lola");
+        System.out.println("Номер телефона содержится в справочнике? - " + pb.containsPhoneNumber("124"));
+        System.out.println("Номер телефона содержится в справочнике? - " + pb.containsPhoneNumber("79000000000"));
     }
 }
