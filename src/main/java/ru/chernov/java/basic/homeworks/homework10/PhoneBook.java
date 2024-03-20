@@ -5,9 +5,8 @@ import java.util.*;
 public class PhoneBook {
     private Map<String, String> phoneNumberList;
 
-    public PhoneBook(Map<String, String> phoneNumberList) {
-        this.phoneNumberList = phoneNumberList;
-        phoneNumberList.put("79000000000", "Фамилия Имя");
+    public PhoneBook() {
+        this.phoneNumberList = new HashMap<>();
     }
 
     public Map<String, String> getPhoneNumberList() {
