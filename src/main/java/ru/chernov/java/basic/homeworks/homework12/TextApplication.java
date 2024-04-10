@@ -4,44 +4,42 @@ import java.io.*;
 import java.util.*;
 
 public class TextApplication {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         System.out.println("Список txt файлов в папке \"src\": ");
         List<String> listFiles = getListFiles("src", "txt");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Укажите имя файла для редактирования (без расширения)");
         String inputFileName = "src\\" + scanner.nextLine() + ".txt";
-        try {
-            if (searchFileInList(listFiles, inputFileName)) {
-                readFile(inputFileName);
-                boolean choice = false;
-                do {
-                    System.out.println("Добавить новые данные в файл? (Y/N)");
+
+        if (searchFileInList(listFiles, inputFileName)) {
+            readFile(inputFileName);
+            boolean choice = false;
+            do {
+                System.out.println("Добавить новые данные в файл? (Y/N)");
+                if (yesNoChoice()) {
+                    System.out.println("Введите строку для добавления в файл");
+                    String inputData = scanner.nextLine();
+                    writeFile(inputFileName, inputData);
+                    System.out.println("Вывести новое содержимое а экран? (Y/N)");
                     if (yesNoChoice()) {
-                        System.out.println("Введите строку для добавления в файл");
-                        String inputData = scanner.nextLine();
-                        writeFile(inputFileName, inputData);
-                        System.out.println("Вывести новое содержимое а экран? (Y/N)");
-                        if (yesNoChoice()) {
-                            readFile(inputFileName);
-                            choice = true;
-                        } else {
-                            System.out.println("Работа с файлом завершена");
-                            return;
-                        }
+                        readFile(inputFileName);
+                        choice = true;
                     } else {
                         System.out.println("Работа с файлом завершена");
                         return;
                     }
-                } while (choice);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage() + "\nРабота программы завершена");
+                } else {
+                    System.out.println("Работа с файлом завершена");
+                    return;
+                }
+            } while (choice);
+        } else {
+            System.out.println("Работа программы завершена");
             return;
         }
     }
 
-
-    private static void readFile(String f) throws FileNotFoundException, IOException {
+    private static void readFile(String f) {
         System.out.println("#Начало файла" + "\n" + "-->");
         File readFile = new File(f);
         try (InputStreamReader inFile = new InputStreamReader(new BufferedInputStream(new FileInputStream(readFile)))) {
@@ -52,18 +50,18 @@ public class TextApplication {
             }
             System.out.println("\n<--" + "\n#Конец файла");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
-    private static void writeFile(String f, String data) throws IOException {
+    private static void writeFile(String f, String data) {
         File writtenFile = new File(f);
         try (OutputStreamWriter writer = new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(writtenFile)))) {
             writer.write(data);
             writer.close();
             System.out.println("Данные записаны в файл");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -86,7 +84,7 @@ public class TextApplication {
         return listFiles;
     }
 
-    public static boolean searchFileInList(List<String> listFiles, String fileName) throws FileNotFoundException {
+    public static boolean searchFileInList(List<String> listFiles, String fileName) {
         int tries = listFiles.size();
         for (String f : listFiles) {
             tries -= 1;
@@ -95,7 +93,8 @@ public class TextApplication {
             }
         }
         if (tries == 0) {
-            throw new FileNotFoundException("Файл не найден");
+            System.out.println("Файл с указанным именем не найден");
+            return false;
         }
         return false;
     }
